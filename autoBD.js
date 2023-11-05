@@ -14,8 +14,8 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var Dattilo;
-(function (Dattilo) {
+var Apellidoestudiante;
+(function (Apellidoestudiante) {
     var AutoBD = /** @class */ (function (_super) {
         __extends(AutoBD, _super);
         function AutoBD(patente, marca, color, precio, foto) {
@@ -24,6 +24,6 @@ var Dattilo;
             return _this;
         }
         return AutoBD;
-    }(Dattilo.Auto));
-    Dattilo.AutoBD = AutoBD;
-})(Dattilo || (Dattilo = {}));
+    }(Apellidoestudiante.Auto));
+    Apellidoestudiante.AutoBD = AutoBD;
+})(Apellidoestudiante || (Apellidoestudiante = {}));

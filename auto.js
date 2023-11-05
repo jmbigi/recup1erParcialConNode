@@ -1,5 +1,5 @@
-var Dattilo;
-(function (Dattilo) {
+var Apellidoestudiante;
+(function (Apellidoestudiante) {
     var Auto = /** @class */ (function () {
         function Auto(patente, marca, color, precio) {
             this.patente = patente;
@@ -12,5 +12,5 @@ var Dattilo;
         };
         return Auto;
     }());
-    Dattilo.Auto = Auto;
-})(Dattilo || (Dattilo = {}));
+    Apellidoestudiante.Auto = Auto;
+})(Apellidoestudiante || (Apellidoestudiante = {}));

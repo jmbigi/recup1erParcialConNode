@@ -1,6 +1,6 @@
 "use strict";
-var Dattilo;
-(function (Dattilo) {
+var Apellidoestudiante;
+(function (Apellidoestudiante) {
     class Auto {
         constructor(patente, marca, color, precio) {
             this.patente = patente;
@@ -12,19 +12,19 @@ var Dattilo;
             return { Patente: this.patente, Marca: this.marca, Color: this.color, Precio: this.precio };
         }
     }
-    Dattilo.Auto = Auto;
-})(Dattilo || (Dattilo = {}));
+    Apellidoestudiante.Auto = Auto;
+})(Apellidoestudiante || (Apellidoestudiante = {}));
 /// <reference path = "auto.ts" />
-var Dattilo;
-(function (Dattilo) {
-    class AutoBD extends Dattilo.Auto {
+var Apellidoestudiante;
+(function (Apellidoestudiante) {
+    class AutoBD extends Apellidoestudiante.Auto {
         constructor(patente, marca, color, precio, foto) {
             super(patente, marca, color, precio);
             this.foto = foto;
         }
     }
-    Dattilo.AutoBD = AutoBD;
-})(Dattilo || (Dattilo = {}));
+    Apellidoestudiante.AutoBD = AutoBD;
+})(Apellidoestudiante || (Apellidoestudiante = {}));
 /// <reference path = "autoBD.ts" />
 var RecPrimerParcial;
 (function (RecPrimerParcial) {
