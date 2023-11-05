@@ -1,6 +1,7 @@
 /// <reference path = "auto.ts" />
 
 namespace Apellidoestudiante
+
 {
 
     export class AutoBD extends Auto

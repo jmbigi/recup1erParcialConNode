@@ -9,7 +9,7 @@ var Apellidoestudiante;
             this.precio = precio;
         }
         ToJSON() {
-            return { Patente: this.patente, Marca: this.marca, Color: this.color, Precio: this.precio };
+            return { "patente": `"${this.patente}"`, "marca": `"${this.marca}"`, "color": `"${this.color}"`, "precio": `${this.precio}` };
         }
     }
     Apellidoestudiante.Auto = Auto;
@@ -40,15 +40,10 @@ var RecPrimerParcial;
             data.append("marca", marca);
             data.append("color", color);
             data.append("precio", precio);
-            //
-            // var fotoElement = <HTMLInputElement>document.getElementById("foto");
-            // if (fotoElement.files) {
-            // data.append("foto", fotoElement.files[0]);
-            // }
             /*
-            let json = {patente: patente, marca: marca, color: color, precio:precio};
-            let data = JSON.stringify(json);
-            data = "patente=" + patente + "&marca=" + marca + "&color=" +color + "&precio=" + precio;
+            // let json = {patente: patente, marca: marca, color: color, precio:precio};
+            // let data = JSON.stringify(json);
+            let data = "patente=" + patente + "&marca=" + marca + "&color=" +color + "&precio=" + precio;
             */
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", ruta, true);
@@ -69,10 +64,11 @@ var RecPrimerParcial;
         }
         static ListarAutosBD() {
             var ruta = "http://localhost:2023/listarAutosBD";
+            console.log("version 3");
             var xhttp = new XMLHttpRequest();
             alert(ruta);
             xhttp.open("GET", ruta, true);
-            xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            // xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             xhttp.send();
             var elementoTabla = document.getElementById("divTabla");
             xhttp.onreadystatechange = function () {
@@ -120,6 +116,44 @@ var RecPrimerParcial;
                         });
                         contenidoTabla = contenidoTabla + "</table>";
                         elementoTabla.innerHTML = contenidoTabla;
+                    }
+                }
+            };
+        }
+        static AgregarAutoFotoBD() {
+            var ruta = "http://localhost:2023/agregarAutoFotoBD";
+            var patente = document.getElementById("patente").value;
+            var marca = document.getElementById("marca").value;
+            var color = document.getElementById("color").value;
+            var precio = document.getElementById("precio").value;
+            let data = new FormData();
+            data.append("patente", patente);
+            data.append("marca", marca);
+            data.append("color", color);
+            data.append("precio", precio);
+            //
+            var fotoElement = document.getElementById("foto");
+            if (fotoElement === null || fotoElement === void 0 ? void 0 : fotoElement.files) {
+                data.append("foto", fotoElement.files[0]);
+            }
+            /*
+            // let json = {patente: patente, marca: marca, color: color, precio:precio};
+            // let data = JSON.stringify(json);
+            let data = "patente=" + patente + "&marca=" + marca + "&color=" +color + "&precio=" + precio;
+            */
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", ruta, true);
+            // xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            console.log(data);
+            xhttp.send(data);
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState === 4) {
+                    if (xhttp.status === 200) {
+                        alert(xhttp.responseText);
+                        console.log(xhttp);
+                    }
+                    else {
+                        console.log("error");
                     }
                 }
             };

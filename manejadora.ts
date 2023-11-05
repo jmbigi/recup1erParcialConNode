@@ -18,16 +18,11 @@ namespace RecPrimerParcial
             data.append("marca", marca);
             data.append("color", color);
             data.append("precio", precio);
-            //
-            // var fotoElement = <HTMLInputElement>document.getElementById("foto");
-            // if (fotoElement.files) {
-                // data.append("foto", fotoElement.files[0]);
-            // }
 
             /*
-            let json = {patente: patente, marca: marca, color: color, precio:precio};
-            let data = JSON.stringify(json);
-            data = "patente=" + patente + "&marca=" + marca + "&color=" +color + "&precio=" + precio;
+            // let json = {patente: patente, marca: marca, color: color, precio:precio};
+            // let data = JSON.stringify(json);
+            let data = "patente=" + patente + "&marca=" + marca + "&color=" +color + "&precio=" + precio;
             */
 
             var xhttp = new XMLHttpRequest();
@@ -60,11 +55,11 @@ namespace RecPrimerParcial
         public static ListarAutosBD()
         {
             var ruta= "http://localhost:2023/listarAutosBD";
-    
+            console.log("version 3");
             var xhttp = new XMLHttpRequest();
             alert(ruta);
             xhttp.open("GET", ruta, true);
-            xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            // xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             
             xhttp.send();
             
@@ -139,5 +134,59 @@ namespace RecPrimerParcial
             }
             
         }
+
+        public static AgregarAutoFotoBD()
+        {
+            var ruta= "http://localhost:2023/agregarAutoFotoBD";
+    
+            var patente = (<HTMLInputElement>document.getElementById("patente")).value;
+            var marca = (<HTMLInputElement>document.getElementById("marca")).value;
+            var color = (<HTMLInputElement>document.getElementById("color")).value;
+            var precio = (<HTMLInputElement>document.getElementById("precio")).value;
+    
+            let data = new FormData();
+            data.append("patente", patente);
+            data.append("marca", marca);
+            data.append("color", color);
+            data.append("precio", precio);
+            //
+            var fotoElement = <HTMLInputElement>document.getElementById("foto");
+            if (fotoElement?.files) {
+                data.append("foto", fotoElement.files[0]);
+            }    
+
+            /*
+            // let json = {patente: patente, marca: marca, color: color, precio:precio};
+            // let data = JSON.stringify(json);
+            let data = "patente=" + patente + "&marca=" + marca + "&color=" +color + "&precio=" + precio;
+            */
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", ruta, true);
+            
+            // xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+            console.log(data);
+    
+            xhttp.send(data);
+            xhttp.onreadystatechange = function() {
+                if (xhttp.readyState === 4) 
+                {
+                  if (xhttp.status === 200) 
+                  {
+                      alert(xhttp.responseText);
+                      console.log(xhttp);
+                  }
+                  else
+                  {
+                    console.log("error");
+                  }
+                }
+                
+            }
+    
+        
+        }
+
     }
 }

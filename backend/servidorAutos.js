@@ -1,12 +1,9 @@
 var express = require('express');
-// const bodyParser = require('body-parser');
 var app = express();
 app.set('puerto', 2023);
+app.use(express.static("public"));
 //AGREGO FILE SYSTEM
 var fs = require('fs');
-// la libraria body-parser ya esta integrada a express, pero se debe usar express.json()
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
 //AGREGO JSON
 app.use(express.json());
 // urlencoded sirve solo si no utilizamos formData y codificamos sendData como querystring
@@ -145,6 +142,7 @@ app.get('/listarAutoFotosBD', function (request, response) {
 });
 //AGREGAR BD - Auto con foto
 app.post('/agregarAutoFotoBD', upload.single("foto"), function (request, response) {
+    console.log('POST', '/agregarAutoFotoBD');
     var file = request.file;
     var extension = mime.extension(file.mimetype);
     var obj = request.body;
@@ -164,6 +162,9 @@ app.post('/agregarAutoFotoBD', upload.single("foto"), function (request, respons
                 if (err) {
                     obj_rta.exito = false;
                     obj_rta.mensaje = "Error en consulta de base de datos.";
+                }
+                else {
+                    console.log(rows);
                 }
             });
         }
